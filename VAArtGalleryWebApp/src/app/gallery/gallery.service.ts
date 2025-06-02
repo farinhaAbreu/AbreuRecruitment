@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Gallery } from './models';
+import { Gallery, NewGallery } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +12,21 @@ export class GalleryService {
 
   getGalleries(): Observable<Gallery[]> {
     return this.http.get<Gallery[]>(`${this.baseUrl}`);
+  }
+
+  getGallery(galleryId: string): Observable<Gallery> {
+    return this.http.get<Gallery>(`${this.baseUrl}/${galleryId}`);
+  }
+
+  createGallery(gallery: NewGallery): Observable<NewGallery> {
+    return this.http.post<NewGallery>(this.baseUrl, gallery);
+  }
+
+  updateGallery(gallery: NewGallery): Observable<NewGallery> {
+    return this.http.put<NewGallery>(`${this.baseUrl}/${gallery.id}`, gallery);
+  }
+
+  deleteGallery(galleryId: string): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseUrl}/${galleryId}`);
   }
 }

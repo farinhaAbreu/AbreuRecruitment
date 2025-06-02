@@ -1,4 +1,5 @@
 using VAArtGalleryWebAPI.Infrastructure;
+using VAArtGalleryWebAPI.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddRepositories(builder.Configuration);
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
-z
+builder.Services.ConfigureMediatR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +29,8 @@ app.UseCors(builder => builder
     .AllowAnyHeader());
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<FluentValidationHandlingMiddleware>();
 
 app.UseAuthorization();
 

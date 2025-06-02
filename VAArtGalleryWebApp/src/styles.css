@@ -5,3 +5,22 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: burlywood;
 }
+
+
+.main-container table tr:nth-child(odd){background-color: #d7d4d4;}
+.main-container table tr:nth-child(even){background-color: #848383;}
+.main-container table thead tr {
+  background-color: #3094ff !important;
+}
+
+.full-width-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.custom-toast-center {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
